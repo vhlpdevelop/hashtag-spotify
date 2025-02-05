@@ -1,0 +1,72 @@
+/* Variáveis */
+
+:root {
+  --first-50: hsl(141deg 75% 90%);
+  --first-100: hsl(141deg 75% 85%);
+  --first-100-25: hsl(141deg 75% 80% / 25%);
+  --first-200: hsl(141deg 75% 70%);
+  --first-300: hsl(141deg 75% 60%);
+  --first-400: hsl(141, 75%, 50%);
+  --first-400-25: hsl(141deg 75% 50% / 25%);
+  --first-500: hsl(141deg 75% 45%);
+  --first-600: hsl(141deg 75% 35%);
+  --first-700: hsl(141deg 75% 25%);
+  --first-800: hsl(141deg 75% 15%);
+  --first-800-85: hsl(141deg 75% 15% / 85%);
+  --first-900: hsl(141deg 75% 10%);
+  --first-950: hsl(141deg 75% 5%);
+  --first-1000: hsl(141deg 75% 2.5%);
+
+  --second-50: hsl(321deg 75% 90%);
+  --second-100: hsl(321deg 75% 85%);
+  --second-100-25: hsl(321deg 75% 80% / 25%);
+  --second-200: hsl(321deg 75% 70%);
+  --second-300: hsl(321deg 75% 60%);
+  --second-400: hsl(321, 75%, 50%);
+  --second-400-25: hsl(321deg 75% 50% / 25%);
+  --second-500: hsl(321deg 75% 45%);
+  --second-600: hsl(321deg 75% 35%);
+  --second-700: hsl(321deg 75% 25%);
+  --second-800: hsl(321deg 75% 15%);
+  --second-800-85: hsl(321deg 75% 15% / 85%);
+  --second-900: hsl(321deg 75% 10%);
+  --second-950: hsl(321deg 75% 5%);
+  --second-1000: hsl(321deg 75% 2.5%);
+
+  --border-radius-s: 12px;
+  --border-radius-m: 16px;
+}
+
+/* Reset */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  line-height: 120%;
+  font-family: "Montserrat", sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+a,
+button {
+  cursor: pointer;
+  color: inherit;
+  font-size: inherit;
+  text-decoration: none;
+}
+
+#root {
+  display: flex;
+  flex-flow: column;
+  height: 100svh;
+  background-color: var(--first-1000);
+  color: var(--first-50);
+}
