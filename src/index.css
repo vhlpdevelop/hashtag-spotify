@@ -16,6 +16,7 @@
   --first-900: hsl(141deg 75% 10%);
   --first-950: hsl(141deg 75% 5%);
   --first-1000: hsl(141deg 75% 2.5%);
+  --first-1000-50: hsl(141deg 75% 2.5% / 50%);
 
   --second-50: hsl(321deg 75% 90%);
   --second-100: hsl(321deg 75% 85%);
@@ -33,8 +34,18 @@
   --second-950: hsl(321deg 75% 5%);
   --second-1000: hsl(321deg 75% 2.5%);
 
-  --border-radius-s: 12px;
-  --border-radius-m: 16px;
+  --border-radius-xs: 5px;
+  --border-radius-s: 10px;
+  --border-radius-m: 15px;
+
+  --container-margin: 0 8px 8px;
+  --container-padding: 25px;
+
+  --transition-function: ease;
+  --transition-duration: 200ms;
+  --transition-duration-slow: 400ms;
+  --transition-function-duration: var(--transition-function)
+    var(--transition-duration);
 }
 
 /* Reset */
@@ -66,7 +77,7 @@ button {
 #root {
   display: flex;
   flex-flow: column;
-  height: 100svh;
+  min-height: 100svh;
   background-color: var(--first-1000);
   color: var(--first-50);
 }
