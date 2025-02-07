@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PlayIcon from "../../components/PlayIcon";
 
-const SingleItem = ({ path, image, name, type, id, artist, style }) => {
+const SingleItem = ({ path, image, name, type, _id, artist, style }) => {
   return (
-    <Link to={`${path}/${id ?? name}`} className="single-item">
+    <Link to={`${path}/${_id}`} className="single-item">
       <div className="single-item__div-image">
         <img
           src={image}

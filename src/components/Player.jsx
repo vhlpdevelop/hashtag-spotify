@@ -10,8 +10,9 @@ import { formatTimeInSeconds } from "../utils/formatTimeInSeconds";
 import { convertStringTimeToSeconds } from "../utils/convertStringTimeToSeconds";
 import { songsArray } from "../assets/database/songs";
 import { Link } from "react-router-dom";
+import { songsIndexedById } from "../assets/database/songs";
 
-const Player = ({ duration, audio, artist, id }) => {
+const Player = ({ duration, audio, artist, _id }) => {
   const audioPlayer = useRef();
   const progressBar = useRef();
   const [songStatus, setSongStatus] = useState({
@@ -46,19 +47,12 @@ const Player = ({ duration, audio, artist, id }) => {
     updateSongStatus(false, 0);
   };
 
-  const previusSongPath = () => {
+  const previusNextSongPath = () => {
     const maxId = songsArray.length;
-    const previousId = id > 1 ? id - 1 : maxId;
+    const randomNumber = Math.floor(Math.random() * maxId);
+    const randomId = songsArray[randomNumber]._id;
 
-    return `/song/${previousId}`;
-  };
-
-  const nextSongPath = () => {
-    const numberId = Number(id);
-    const maxId = songsArray.length;
-    const nextId = numberId === maxId ? 1 : numberId + 1;
-
-    return `/song/${nextId}`;
+    return `/song/${randomId}`;
   };
 
   useEffect(() => {
@@ -76,7 +70,7 @@ const Player = ({ duration, audio, artist, id }) => {
   return (
     <div className="player">
       <div className="player__controllers">
-        <Link to={previusSongPath()} onClick={() => resetSong()}>
+        <Link to={previusNextSongPath()} onClick={() => resetSong()}>
           <FontAwesomeIcon
             className="player__icon player__icon--backward"
             icon={faBackwardStep}
@@ -89,7 +83,7 @@ const Player = ({ duration, audio, artist, id }) => {
           onClick={() => playPauseMusic()}
         ></FontAwesomeIcon>
 
-        <Link to={nextSongPath()} onClick={() => resetSong()}>
+        <Link to={previusNextSongPath()} onClick={() => resetSong()}>
           <FontAwesomeIcon
             className="player__icon player__icon--forward"
             icon={faForwardStep}

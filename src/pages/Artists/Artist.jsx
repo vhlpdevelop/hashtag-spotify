@@ -19,7 +19,7 @@ const Artist = () => {
       <div className="artist__header" style={{ backgroundImage: `${bgImage}` }}>
         <h2 className="artist__title">{name}</h2>
 
-        <Link to={`/song/${songsArray[randomSongIndex].id}`}>
+        <Link to={`/song/${songsArray[randomSongIndex]._id}`}>
           <PlayIcon visible={true} distance={25} fixed={true} />
         </Link>
       </div>

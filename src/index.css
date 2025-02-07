@@ -1,38 +1,22 @@
 /* Variáveis */
 
 :root {
-  --first-50: hsl(141deg 75% 90%);
-  --first-100: hsl(141deg 75% 85%);
-  --first-100-25: hsl(141deg 75% 80% / 25%);
-  --first-200: hsl(141deg 75% 70%);
-  --first-300: hsl(141deg 75% 60%);
-  --first-400: hsl(141, 75%, 50%);
-  --first-400-25: hsl(141deg 75% 50% / 25%);
-  --first-500: hsl(141deg 75% 45%);
-  --first-600: hsl(141deg 75% 35%);
-  --first-700: hsl(141deg 75% 25%);
-  --first-800: hsl(141deg 75% 15%);
-  --first-800-85: hsl(141deg 75% 15% / 85%);
-  --first-900: hsl(141deg 75% 10%);
-  --first-950: hsl(141deg 75% 5%);
-  --first-1000: hsl(141deg 75% 2.5%);
-  --first-1000-50: hsl(141deg 75% 2.5% / 50%);
-
-  --second-50: hsl(321deg 75% 90%);
-  --second-100: hsl(321deg 75% 85%);
-  --second-100-25: hsl(321deg 75% 80% / 25%);
-  --second-200: hsl(321deg 75% 70%);
-  --second-300: hsl(321deg 75% 60%);
-  --second-400: hsl(321, 75%, 50%);
-  --second-400-25: hsl(321deg 75% 50% / 25%);
-  --second-500: hsl(321deg 75% 45%);
-  --second-600: hsl(321deg 75% 35%);
-  --second-700: hsl(321deg 75% 25%);
-  --second-800: hsl(321deg 75% 15%);
-  --second-800-85: hsl(321deg 75% 15% / 85%);
-  --second-900: hsl(321deg 75% 10%);
-  --second-950: hsl(321deg 75% 5%);
-  --second-1000: hsl(321deg 75% 2.5%);
+  --green-50: hsl(141deg 75% 90%);
+  --green-100: hsl(141deg 75% 85%);
+  --green-100-25: hsl(141deg 75% 80% / 25%);
+  --green-200: hsl(141deg 75% 70%);
+  --green-300: hsl(141deg 75% 60%);
+  --green-400: hsl(141, 75%, 50%);
+  --green-400-25: hsl(141deg 75% 50% / 25%);
+  --green-500: hsl(141deg 75% 45%);
+  --green-600: hsl(141deg 75% 35%);
+  --green-700: hsl(141deg 75% 25%);
+  --green-800: hsl(141deg 75% 15%);
+  --green-800-85: hsl(141deg 75% 15% / 85%);
+  --green-900: hsl(141deg 75% 10%);
+  --green-950: hsl(141deg 75% 5%);
+  --green-1000: hsl(141deg 75% 2.5%);
+  --green-1000-50: hsl(141deg 75% 2.5% / 50%);
 
   --border-radius-xs: 5px;
   --border-radius-s: 10px;
@@ -64,6 +48,7 @@ body {
 
 img {
   max-width: 100%;
+  display: block;
 }
 
 a,
@@ -78,6 +63,6 @@ button {
   display: flex;
   flex-flow: column;
   min-height: 100svh;
-  background-color: var(--first-1000);
-  color: var(--first-50);
+  background-color: var(--green-1000);
+  color: var(--green-50);
 }

@@ -6,10 +6,10 @@ import Player from "../../components/Player";
 
 const Song = () => {
   const { id } = useParams();
-  const { image, name, duration, artist, audio } = songsIndexedById[id][0];
+  const { image, name, duration, artist, audio } = songsIndexedById[id];
   const artistObj = artistsIndexedByName[artist];
   const artistImage = artistObj.image;
-  const artistId = artistObj.id;
+  const artistId = artistObj._id;
 
   return (
     <section className="song">

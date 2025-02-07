@@ -36,9 +36,7 @@ const ItemsList = ({
               type={type}
               path={individualPath}
               style={style}
-              key={`single-item-${type ?? itemObj.artist}-${
-                itemObj.id ?? itemObj.name
-              }`}
+              key={`single-item-${type ?? itemObj.artist}-${itemObj._id}`}
             />
           ))}
       </div>
