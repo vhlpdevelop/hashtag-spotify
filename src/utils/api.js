@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const PORT = 3000;
-const URL = "https://projeto-jornada.onrender.com";
+// const URL = "http://localhost:3000";
+const URL = "https://back-end-jornada-production.up.railway.app/";
 
 export const getArtists = async () => {
   const response = await axios.get(`${URL}/artists`);
