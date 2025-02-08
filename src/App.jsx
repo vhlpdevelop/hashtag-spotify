@@ -1,4 +1,3 @@
-import "./App.css";
 import Header from "./components/Header";
 import Artist from "./pages/Artists/Artist";
 import Artists from "./pages/Artists/Artists";
