@@ -1,109 +1,103 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faPlayCircle,
+  faCirclePlay,
+  faCirclePause,
   faBackwardStep,
   faForwardStep,
-  faPauseCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { formatTimeInSeconds } from "../utils/formatTimeInSeconds";
-import { convertStringTimeToSeconds } from "../utils/convertStringTimeToSeconds";
-import { songsArray } from "../assets/database/songs";
 import { Link } from "react-router-dom";
-import { songsIndexedById } from "../assets/database/songs";
+import { useRef, useEffect } from "react";
 
-const Player = ({ duration, audio, artist, _id }) => {
+const formatTime = (timeInSeconds) => {
+  const minutes = Math.floor(timeInSeconds / 60)
+    .toString()
+    .padStart(2, "0");
+  const seconds = Math.floor(timeInSeconds - minutes * 60)
+    .toString()
+    .padStart(2, "0");
+
+  return `${minutes}:${seconds}`;
+};
+
+const timeInSeconds = (timeString) => {
+  const splitArray = timeString.split(":");
+  const minutes = Number(splitArray[0]);
+  const seconds = Number(splitArray[1]);
+
+  return seconds + minutes * 60;
+};
+
+const Player = ({
+  duration,
+  randomIdFromArtist,
+  randomId2FromArtist,
+  audio,
+}) => {
+  // const audioPlayer...
   const audioPlayer = useRef();
   const progressBar = useRef();
-  const [songStatus, setSongStatus] = useState({
-    isPlaying: false,
-    currentTime: formatTimeInSeconds(0),
-  });
-  const { isPlaying, currentTime } = songStatus;
-  const durationInSeconds = convertStringTimeToSeconds(duration);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(formatTime(0));
+  const durationInSeconds = timeInSeconds(duration);
 
-  const playPauseMusic = () => {
+  // console.log(durationInSeconds);
+
+  // função
+  // console.log(audioPlayer.current.play());
+  const playPause = () => {
     isPlaying ? audioPlayer.current.pause() : audioPlayer.current.play();
 
-    updateSongStatus(!songStatus.isPlaying, audioPlayer.current.currentTime);
-  };
+    setIsPlaying(!isPlaying);
 
-  const updateSongStatus = (playingStatus, currentTimeStatus) => {
-    setSongStatus({
-      isPlaying: playingStatus,
-      currentTime: formatTimeInSeconds(currentTimeStatus),
-    });
-
-    progressBar.current.style.setProperty(
-      "--_progress",
-      `${(currentTimeStatus / durationInSeconds) * 100}%`
-    );
-  };
-
-  const resetSong = () => {
-    audioPlayer.current.pause();
-    audioPlayer.current.currentTime = 0;
-
-    updateSongStatus(false, 0);
-  };
-
-  const previusNextSongPath = () => {
-    const maxId = songsArray.length;
-    const randomNumber = Math.floor(Math.random() * maxId);
-    const randomId = songsArray[randomNumber]._id;
-
-    return `/song/${randomId}`;
+    // console.log(formatTime(audioPlayer.current.currentTime));
   };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (isPlaying) {
-        const timeNowInSeconds = audioPlayer.current.currentTime;
+      if (isPlaying)
+        setCurrentTime(formatTime(audioPlayer.current.currentTime));
 
-        updateSongStatus(songStatus.isPlaying, timeNowInSeconds);
-      }
+      progressBar.current.style.setProperty(
+        "--_progress",
+        (audioPlayer.current.currentTime / durationInSeconds) * 100 + "%"
+      );
     }, 1000);
 
     return () => clearInterval(intervalId);
   }, [isPlaying]);
 
+  // setIsPlaying(false)
+
   return (
     <div className="player">
       <div className="player__controllers">
-        <Link to={previusNextSongPath()} onClick={() => resetSong()}>
-          <FontAwesomeIcon
-            className="player__icon player__icon--backward"
-            icon={faBackwardStep}
-          ></FontAwesomeIcon>
+        <Link to={`/song/${randomIdFromArtist}`}>
+          <FontAwesomeIcon className="player__icon" icon={faBackwardStep} />
         </Link>
 
         <FontAwesomeIcon
           className="player__icon player__icon--play"
-          icon={songStatus.isPlaying ? faPauseCircle : faPlayCircle}
-          onClick={() => playPauseMusic()}
-        ></FontAwesomeIcon>
+          icon={isPlaying ? faCirclePause : faCirclePlay}
+          onClick={() => playPause()}
+        />
 
-        <Link to={previusNextSongPath()} onClick={() => resetSong()}>
-          <FontAwesomeIcon
-            className="player__icon player__icon--forward"
-            icon={faForwardStep}
-          ></FontAwesomeIcon>
+        <Link to={`/song/${randomId2FromArtist}`}>
+          <FontAwesomeIcon className="player__icon" icon={faForwardStep} />
         </Link>
       </div>
 
       <div className="player__progress">
-        <p className="player__time">{currentTime}</p>
+        <p>{currentTime}</p>
 
         <div className="player__bar">
           <div ref={progressBar} className="player__bar-progress"></div>
         </div>
 
-        <p className="player__time">
-          {formatTimeInSeconds(convertStringTimeToSeconds(duration))}
-        </p>
+        <p>{duration}</p>
       </div>
 
-      <audio ref={audioPlayer} id="audio-player" src={audio}></audio>
+      <audio ref={audioPlayer} src={audio}></audio>
     </div>
   );
 };
